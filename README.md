@@ -1,4 +1,4 @@
-# Source Generators Mvvm Toolkit
+# Mvvm Source Generators Toolkit
 
 ## Source generator for getting android controls from xml layout
 
