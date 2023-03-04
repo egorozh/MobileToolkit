@@ -1,4 +1,4 @@
-[![Nuget](https://img.shields.io/nuget/v/MSG.Android.LayoutGenerator)](https://www.nuget.org/packages/MSG.Android.LayoutGenerator)
+[![Nuget](https://img.shields.io/nuget/v/MSG.Android.LayoutGenerator?label=MSG.Android.LayoutGenerator)](https://www.nuget.org/packages/MSG.Android.LayoutGenerator)
 
 # Mvvm Source Generators Toolkit
 
