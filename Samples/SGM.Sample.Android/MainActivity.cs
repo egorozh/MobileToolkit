@@ -38,6 +38,7 @@ public partial class MainActivity : Activity
         _viewModel.Text = EditText.Text;
     }
 
+    
     private void ViewModelOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(_viewModel.Text))
@@ -50,6 +51,6 @@ public partial class MainActivity : Activity
 
     private void ButtonOnClick(object? sender, EventArgs e)
     {
-        _viewModel.ButtonCommand?.Execute(null);
+        _viewModel.ClickCommand?.Execute(null);
     }
 }
