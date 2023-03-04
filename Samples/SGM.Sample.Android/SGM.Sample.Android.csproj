@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net7.0-android</TargetFramework>
+        <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+        <RootNamespace>SGM.Sample.Android</RootNamespace>
+        <OutputType>Exe</OutputType>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ApplicationId>com.companyname.SGM.Sample.Android</ApplicationId>
+        <ApplicationVersion>1</ApplicationVersion>
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <AssemblyName>SGM.Sample.Android</AssemblyName>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\..\Toolkit\SGM.Android.LayoutGenerator\SGM.Android.LayoutGenerator.csproj"
+                          OutputItemType="Analyzer" 
+                          ReferenceOutputAssembly="false" />
+
+        <ProjectReference Include="..\SGM.Sample.Core\SGM.Sample.Core.csproj" />
+    </ItemGroup>
+</Project>

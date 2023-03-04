@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
+
 namespace SGM.Sample.Core;
 
 

@@ -1,19 +1,18 @@
 using System.ComponentModel;
 using Android.Text;
+using SGM.Android.LayoutGenerator;
 using SGM.Sample.Core;
 
-namespace SGM.Sample.Android_;
 
+namespace SGM.Sample.Android;
 
 
 [Activity(Label = "@string/app_name", MainLauncher = true)]
-public class MainActivity : Activity
+[AndroidLayoutGenerate(Resource.Layout.activity_main)]
+public partial class MainActivity : Activity
 {
     private MainViewModel _viewModel;
     
-    private TextView _textView;
-    private EditText _editText;
-
 
     protected override void OnCreate(Bundle? savedInstanceState)
     {
@@ -24,29 +23,27 @@ public class MainActivity : Activity
 
         _viewModel = new MainViewModel();
 
-        _textView = this.FindViewById<TextView>(Resource.Id.TextView);
-        var button = this.FindViewById<Button>(Resource.Id.Button);
-        _editText = this.FindViewById<EditText>(Resource.Id.EditText);
+        InitializeControls();
         
-        button.Click += ButtonOnClick;
+        Button.Click += ButtonOnClick;
         
-        _editText.TextChanged += EditTextOnTextChanged;
+        EditText.TextChanged += EditTextOnTextChanged;
         
         _viewModel.PropertyChanged += ViewModelOnPropertyChanged;
     }
-
+    
     
     private void EditTextOnTextChanged(object? sender, TextChangedEventArgs e)
     {
-        _viewModel.Text = _editText.Text;
+        _viewModel.Text = EditText.Text;
     }
 
     private void ViewModelOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(_viewModel.Text))
         {
-            _textView.Text = _viewModel.Text;
-            _editText.Text = _viewModel.Text;
+            TextView.Text = _viewModel.Text;
+            EditText.Text = _viewModel.Text;
         }
     }
 
