@@ -21,7 +21,7 @@ public partial class MainActivity : Activity
 
 ```
 In generated file seems like
-``` cssharp
+``` csharp
 using Android.Widget;
 using Android.Views;
 
