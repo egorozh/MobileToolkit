@@ -1,3 +1,5 @@
+[![Nuget](https://img.shields.io/nuget/v/MSG.Android.LayoutGenerator)](https://www.nuget.org/packages/MSG.Android.LayoutGenerator)
+
 # Mvvm Source Generators Toolkit
 
 ## Source generator for getting android controls from xml layout
