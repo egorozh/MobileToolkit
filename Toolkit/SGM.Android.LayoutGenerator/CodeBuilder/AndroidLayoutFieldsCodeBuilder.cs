@@ -122,7 +122,7 @@ internal static class AndroidLayoutFieldsCodeBuilder
                 string value = attr.InnerText;
                 
                 if (attr.LocalName == "id" && value.StartsWith("@+id/"))
-                    controls.Add(new ControlData(value[5..], GetClassName(element.Name)));
+                    controls.Add(new ControlData(value.Substring(5), GetClassName(element.Name)));
             }
         }
         
