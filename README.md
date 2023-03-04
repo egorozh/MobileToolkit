@@ -67,3 +67,5 @@ partial class MainActivity
 Plans:
 1) Source generator for generate bindings code
 2) Source generator for generate ui controls like android compose
+3) Source generator for DI container
+4) Source generator for generate outlets on .xib files
