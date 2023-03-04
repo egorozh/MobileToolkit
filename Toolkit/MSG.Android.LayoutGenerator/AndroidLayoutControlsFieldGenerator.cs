@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 using Microsoft.CodeAnalysis;
-using SGM.Android.LayoutGenerator.CodeBuilder;
-using SGM.Android.LayoutGenerator.Collectors;
+using MSG.Android.LayoutGenerator.CodeBuilder;
+using MSG.Android.LayoutGenerator.Collectors;
 
 
-namespace SGM.Android.LayoutGenerator;
+namespace MSG.Android.LayoutGenerator;
 
 
 [Generator]

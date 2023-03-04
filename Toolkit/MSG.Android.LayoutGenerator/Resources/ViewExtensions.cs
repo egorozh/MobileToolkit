@@ -1,6 +1,7 @@
 using Android.Views;
 
-namespace SGM.Android.LayoutGenerator;
+
+namespace MSG.Android.LayoutGenerator;
 
 
 internal static class ViewExtensions

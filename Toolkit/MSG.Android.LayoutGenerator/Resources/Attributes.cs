@@ -1,4 +1,4 @@
-﻿namespace SGM.Android.LayoutGenerator;
+﻿namespace MSG.Android.LayoutGenerator;
 
 
 [AttributeUsage(validOn: AttributeTargets.Class | AttributeTargets.Struct)]

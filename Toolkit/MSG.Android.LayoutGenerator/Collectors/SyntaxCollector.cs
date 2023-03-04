@@ -1,9 +1,9 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using SGM.Android.LayoutGenerator.Extensions;
+using MSG.Android.LayoutGenerator.Extensions;
 
 
-namespace SGM.Android.LayoutGenerator.Collectors;
+namespace MSG.Android.LayoutGenerator.Collectors;
 
 
 internal class SyntaxCollector : ISyntaxReceiver

@@ -2,11 +2,11 @@
 using System.Xml;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using SGM.Android.LayoutGenerator.Collectors;
-using SGM.Android.LayoutGenerator.Extensions;
+using MSG.Android.LayoutGenerator.Collectors;
+using MSG.Android.LayoutGenerator.Extensions;
 
 
-namespace SGM.Android.LayoutGenerator.CodeBuilder;
+namespace MSG.Android.LayoutGenerator.CodeBuilder;
 
 
 internal static class AndroidLayoutFieldsCodeBuilder

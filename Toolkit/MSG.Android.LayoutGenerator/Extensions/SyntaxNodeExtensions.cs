@@ -1,7 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 
-
-namespace SGM.Android.LayoutGenerator.Extensions;
+namespace MSG.Android.LayoutGenerator.Extensions;
 
 
 internal static class SyntaxNodeExtensions
