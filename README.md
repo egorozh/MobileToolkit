@@ -20,7 +20,7 @@ public partial class MainActivity : Activity
 }
 
 ```
-In generated file seems like
+The generated file looks like this:
 ``` csharp
 using Android.Widget;
 using Android.Views;
