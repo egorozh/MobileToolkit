@@ -11,6 +11,6 @@
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     </PropertyGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Samples\SGM.Sample.Core\SGM.Sample.Core.csproj" />
+      <ProjectReference Include="..\SGM.Sample.Core\SGM.Sample.Core.csproj" />
     </ItemGroup>
 </Project>
