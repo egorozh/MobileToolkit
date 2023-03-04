@@ -2,9 +2,18 @@
 
 # Mvvm Source Generators Toolkit
 
-## Source generator for getting android controls from xml layout
+### Source generator for getting android controls from xml layout
 
-Usage:
+Get started:
+
+Install the library as a NuGet package:
+
+```powershell
+Install-Package MSG.Android.LayoutGenerator
+# Or 'dotnet add package MSG.Android.LayoutGenerator'
+
+```
+And usage:
 ``` csharp
 
 [Activity]
