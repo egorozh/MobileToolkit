@@ -17,6 +17,6 @@
     </ItemGroup>
     
     <ItemGroup>
-      <PackageReference Include="SGM.Android.LayoutGenerator" Version="1.0.1" />
+      <PackageReference Include="MSG.Android.LayoutGenerator" Version="1.0.2" />
     </ItemGroup>
 </Project>
