@@ -1,13 +1,13 @@
 using Android.Views;
 
 
-namespace MSG.Android.LayoutGenerator;
-
-
-internal static class ViewExtensions
+namespace MSG.Android.LayoutGenerator
 {
-    public static T As<T>(this View view) where T : View
+    internal static class ViewExtensions
     {
-        return (T)view;
+        public static T As<T>(this View view) where T : View
+        {
+            return (T) view;
+        }
     }
 }

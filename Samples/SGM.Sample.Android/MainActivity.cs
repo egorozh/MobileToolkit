@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using Android.Text;
-using SGM.Android.LayoutGenerator;
+using MSG.Android.LayoutGenerator;
 using SGM.Sample.Core;
 
 

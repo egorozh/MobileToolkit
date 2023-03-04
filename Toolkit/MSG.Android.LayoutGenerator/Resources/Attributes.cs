@@ -1,10 +1,10 @@
-﻿namespace MSG.Android.LayoutGenerator;
-
-
-[AttributeUsage(validOn: AttributeTargets.Class | AttributeTargets.Struct)]
-internal class AndroidLayoutGenerateAttribute : Attribute
+﻿namespace MSG.Android.LayoutGenerator
 {
-    public AndroidLayoutGenerateAttribute(int layoutResource, string? source = null)
+    [AttributeUsage(validOn: AttributeTargets.Class | AttributeTargets.Struct)]
+    internal class AndroidLayoutGenerateAttribute : Attribute
     {
+        public AndroidLayoutGenerateAttribute(int layoutResource, string? source = null)
+        {
+        }
     }
 }

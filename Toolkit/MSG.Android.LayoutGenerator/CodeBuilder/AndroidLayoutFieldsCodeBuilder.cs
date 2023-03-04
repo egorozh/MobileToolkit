@@ -55,36 +55,40 @@ internal static class AndroidLayoutFieldsCodeBuilder
         sb.AppendLine();
         sb.AppendLine();
 
-        sb.AppendLine($"namespace {namespaceName};");
+        sb.AppendLine($"namespace {namespaceName}");
+
+        sb.AppendLine("{");
         
         sb.AppendLine();
         sb.AppendLine();
 
-        sb.AppendLine($"partial class {className}");
-        sb.AppendLine("{");
+        sb.AppendLine($"    partial class {className}");
+        sb.AppendLine("    {");
 
         foreach (var controlData in controls)
         {
-            sb.AppendLine($"    protected {controlData.ClassName} {controlData.Id} {{ get; private set; }}");
+            sb.AppendLine($"        protected {controlData.ClassName} {controlData.Id} {{ get; private set; }}");
             sb.AppendLine();
         }
 
         sb.AppendLine();
 
-        sb.AppendLine("    protected void InitializeControls()");
-        sb.AppendLine("    {");
+        sb.AppendLine("        protected void InitializeControls()");
+        sb.AppendLine("        {");
 
         string? sourceName = data.SourceName;
         sourceName = string.IsNullOrEmpty(sourceName) ? "this" : sourceName;
 
         foreach (var controlData in controls)
         {
-            sb.AppendLine($"        {controlData.Id} = {sourceName}.FindViewById<{controlData.ClassName}>(Resource.Id.{controlData.Id});");
+            sb.AppendLine($"            {controlData.Id} = {sourceName}.FindViewById<{controlData.ClassName}>(Resource.Id.{controlData.Id});");
             sb.AppendLine();
         }
         
-        sb.AppendLine("    }");
+        sb.AppendLine("        }");
         sb.AppendLine();
+        
+        sb.AppendLine("    }");
         
         sb.Append('}');
         

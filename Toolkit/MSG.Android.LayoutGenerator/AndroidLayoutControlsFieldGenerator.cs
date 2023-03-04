@@ -16,8 +16,15 @@ public class AndroidLayoutControlsFieldGenerator : ISourceGenerator
         
         context.RegisterForPostInitialization(c =>
         {
-            c.AddSource("Attributes.g.cs", ReadResourceClassContent("SGM.Android.LayoutGenerator.Resources.Attributes.cs"));
-            c.AddSource("ViewExtensions.g.cs", ReadResourceClassContent("SGM.Android.LayoutGenerator.Resources.ViewExtensions.cs"));
+            string? attrOutput = ReadResourceClassContent("MSG.Android.LayoutGenerator.Resources.Attributes.cs");
+            
+            if (attrOutput is not null)
+                c.AddSource("Attributes.g.cs", attrOutput);
+            
+            string? viewsExtensionsOutput = ReadResourceClassContent("MSG.Android.LayoutGenerator.Resources.ViewExtensions.cs");
+            
+            if (viewsExtensionsOutput is not null)
+                c.AddSource("ViewExtensions.g.cs", viewsExtensionsOutput);
         });
     }
 
