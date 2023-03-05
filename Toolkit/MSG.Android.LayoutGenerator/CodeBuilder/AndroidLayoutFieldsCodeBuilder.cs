@@ -39,6 +39,13 @@ internal static class AndroidLayoutFieldsCodeBuilder
         
         if (controls.Count == 0)
             return;
+
+        string classType = data.ClassSyntax switch
+        {
+            RecordDeclarationSyntax => "record",
+            StructDeclarationSyntax => "struct",
+            _ => "class"
+        };
         
         string className = data.ClassSyntax.Identifier.Text;
         
@@ -59,18 +66,18 @@ internal static class AndroidLayoutFieldsCodeBuilder
 
         sb.AppendLine("{");
 
-        sb.AppendLine($"    partial class {className}");
+        sb.AppendLine($"    partial {classType} {className}");
         sb.AppendLine("    {");
 
         foreach (var controlData in controls)
         {
-            sb.AppendLine($"        protected {controlData.ClassName} {controlData.Id} {{ get; private set; }}");
+            sb.AppendLine($"        public {controlData.ClassName} {controlData.Id} {{ get; private set; }}");
             sb.AppendLine();
         }
 
         sb.AppendLine();
 
-        sb.AppendLine("        protected void InitializeControls()");
+        sb.AppendLine("        private void InitializeControls()");
         sb.AppendLine("        {");
 
         string? sourceName = data.SourceName;

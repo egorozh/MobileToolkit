@@ -10,19 +10,48 @@ internal static class SyntaxCollector
 {
     public static bool IsLayoutGenerateAttributeNote(SyntaxNode syntaxNode)
     {
-        return syntaxNode is AttributeSyntax
+        if (syntaxNode is not TypeDeclarationSyntax typeDeclarationSyntax)
+            return false;
+
+        
+        foreach (var attributeList in typeDeclarationSyntax.AttributeLists)
         {
-            Name: IdentifierNameSyntax
+            foreach (var attribute in attributeList.Attributes)
             {
-                Identifier.Text: "AndroidLayoutGenerate" or "AndroidLayoutGenerateAttribute"
+                if (IsKnownAttribute(attribute))
+                {
+                    return true;
+                }
             }
-        };
+        }
+
+        return false;
     }
 
     
-    public static LayoutCollectData? GetCollectData(AttributeSyntax attributeSyntax)
+    private static bool IsKnownAttribute(AttributeSyntax attribute)
     {
-        var argument = attributeSyntax.ArgumentList?.Arguments.FirstOrDefault();
+        if (attribute.Name is not IdentifierNameSyntax identifierNameSyntax)
+            return false;
+
+        string attributeName = identifierNameSyntax.Identifier.Text;
+
+        return attributeName is "AndroidLayoutGenerate" or "AndroidLayoutGenerateAttribute";
+    }
+
+
+    public static LayoutCollectData? GetCollectData(TypeDeclarationSyntax typeDeclarationSyntax)
+    {
+        List<AttributeSyntax> attributeSyntaxes = new ();
+
+        foreach (var attributeList in typeDeclarationSyntax.AttributeLists)
+        {
+            attributeSyntaxes.AddRange(attributeList.Attributes.Where(static attribute => IsKnownAttribute(attribute)));
+        }
+
+        var attributeSyntax = attributeSyntaxes.FirstOrDefault();
+
+        var argument = attributeSyntax?.ArgumentList?.Arguments.FirstOrDefault();
         
         if (argument?.Expression is not MemberAccessExpressionSyntax expression)
             return null;
@@ -31,9 +60,7 @@ internal static class SyntaxCollector
         
         if (string.IsNullOrEmpty(layoutName))
             return null;
-
-        var classSyntax = attributeSyntax.GetParent<ClassDeclarationSyntax>();
-
+        
         string? sourceName = null;
 
         if (attributeSyntax.ArgumentList?.Arguments.Count > 1)
@@ -54,9 +81,9 @@ internal static class SyntaxCollector
             }
         }
         
-        return new LayoutCollectData(layoutName, classSyntax, sourceName);
+        return new LayoutCollectData(layoutName, typeDeclarationSyntax, sourceName);
     }
     
     
-    public record LayoutCollectData(string LayoutName, ClassDeclarationSyntax ClassSyntax, string? SourceName);
+    public record LayoutCollectData(string LayoutName, TypeDeclarationSyntax ClassSyntax, string? SourceName);
 }

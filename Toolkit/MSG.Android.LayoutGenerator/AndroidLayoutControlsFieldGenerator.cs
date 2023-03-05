@@ -13,13 +13,13 @@ public class AndroidLayoutControlsFieldGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        IncrementalValuesProvider<AttributeSyntax> providerTypes = context.SyntaxProvider.CreateSyntaxProvider(
-            (node, _) => SyntaxCollector.IsLayoutGenerateAttributeNote(node),
-            (syntaxContext, _) => (AttributeSyntax)syntaxContext.Node);
+        IncrementalValuesProvider<TypeDeclarationSyntax> providerTypes = context.SyntaxProvider.CreateSyntaxProvider(
+            static (node, _) => SyntaxCollector.IsLayoutGenerateAttributeNote(node),
+            static (syntaxContext, _) => (TypeDeclarationSyntax)syntaxContext.Node);
 
         var provider = providerTypes.Combine(context.AnalyzerConfigOptionsProvider);
         
-        context.RegisterSourceOutput(provider, (productionContext, inputs) =>
+        context.RegisterSourceOutput(provider, static (productionContext, inputs) =>
         {
             var collectData = SyntaxCollector.GetCollectData(inputs.Left);
             
