@@ -6,31 +6,33 @@ using MSG.Android.LayoutGenerator.Extensions;
 namespace MSG.Android.LayoutGenerator.Collectors;
 
 
-internal class SyntaxCollector : ISyntaxReceiver
+internal static class SyntaxCollector
 {
-    private readonly List<LayoutCollectData> _collects = new();
-
-    
-    public IReadOnlyList<LayoutCollectData> Collects => _collects;
-
-    
-
-    public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
+    public static bool IsLayoutGenerateAttributeNote(SyntaxNode syntaxNode)
     {
-        if (syntaxNode is not AttributeSyntax { Name: IdentifierNameSyntax {Identifier.Text: "AndroidLayoutGenerate" or "AndroidLayoutGenerateAttribute"}} attributeSyntax)
-            return;
+        return syntaxNode is AttributeSyntax
+        {
+            Name: IdentifierNameSyntax
+            {
+                Identifier.Text: "AndroidLayoutGenerate" or "AndroidLayoutGenerateAttribute"
+            }
+        };
+    }
 
+    
+    public static LayoutCollectData? GetCollectData(AttributeSyntax attributeSyntax)
+    {
         var argument = attributeSyntax.ArgumentList?.Arguments.FirstOrDefault();
         
         if (argument?.Expression is not MemberAccessExpressionSyntax expression)
-            return;
+            return null;
 
         string layoutName = expression.Name.ToString();
         
         if (string.IsNullOrEmpty(layoutName))
-            return;
+            return null;
 
-        var classSyntax = syntaxNode.GetParent<ClassDeclarationSyntax>();
+        var classSyntax = attributeSyntax.GetParent<ClassDeclarationSyntax>();
 
         string? sourceName = null;
 
@@ -52,9 +54,9 @@ internal class SyntaxCollector : ISyntaxReceiver
             }
         }
         
-        _collects.Add(new LayoutCollectData(layoutName, classSyntax, sourceName));
+        return new LayoutCollectData(layoutName, classSyntax, sourceName);
     }
-
+    
     
     public record LayoutCollectData(string LayoutName, ClassDeclarationSyntax ClassSyntax, string? SourceName);
 }

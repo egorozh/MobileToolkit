@@ -20,7 +20,11 @@
     <EditText android:id="@+id/EditText"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_margin="5dp">
+              android:layout_margin="5dp"/>
 
-    </EditText>
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/RecyclerView"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:layout_margin="5dp"/>
+    
 </LinearLayout>

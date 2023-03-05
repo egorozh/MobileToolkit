@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MSG.Android.LayoutGenerator.CodeBuilder;
 using MSG.Android.LayoutGenerator.Collectors;
 
@@ -8,13 +9,36 @@ namespace MSG.Android.LayoutGenerator;
 
 
 [Generator]
-public class AndroidLayoutControlsFieldGenerator : ISourceGenerator
+public class AndroidLayoutControlsFieldGenerator : IIncrementalGenerator
 {
-    public void Initialize(GeneratorInitializationContext context)
+    public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        context.RegisterForSyntaxNotifications(() => new SyntaxCollector());
+        IncrementalValuesProvider<AttributeSyntax> providerTypes = context.SyntaxProvider.CreateSyntaxProvider(
+            (node, _) => SyntaxCollector.IsLayoutGenerateAttributeNote(node),
+            (syntaxContext, _) => (AttributeSyntax)syntaxContext.Node);
+
+        var provider = providerTypes.Combine(context.AnalyzerConfigOptionsProvider);
         
-        context.RegisterForPostInitialization(c =>
+        context.RegisterSourceOutput(provider, (productionContext, inputs) =>
+        {
+            var collectData = SyntaxCollector.GetCollectData(inputs.Left);
+            
+            if (collectData is null)
+                return;
+
+            var globalOptions = inputs.Right.GlobalOptions;
+            
+            if (!globalOptions.TryGetValue("build_property.projectdir", out string? projectDir))
+                return;
+            
+            if (string.IsNullOrEmpty(projectDir))
+                return;
+            
+            AndroidLayoutFieldsCodeBuilder.Generate(productionContext, collectData, projectDir);
+        });
+        
+        
+        context.RegisterPostInitializationOutput(c =>
         {
             string? attrOutput = ReadResourceClassContent("MSG.Android.LayoutGenerator.Resources.Attributes.cs");
             
@@ -27,28 +51,7 @@ public class AndroidLayoutControlsFieldGenerator : ISourceGenerator
                 c.AddSource("ViewExtensions.g.cs", viewsExtensionsOutput);
         });
     }
-
     
-    public void Execute(GeneratorExecutionContext context)
-    {
-        if (context.SyntaxReceiver is not SyntaxCollector syntaxCollector)
-            return;
-
-        var collectData = syntaxCollector.Collects;
-        
-        if (collectData.Count == 0)
-            return;
-        
-        if (!context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.projectdir", out string? projectDir))
-            return;
-        
-        if (string.IsNullOrEmpty(projectDir))
-            return;
-        
-        foreach (var data in collectData) 
-            AndroidLayoutFieldsCodeBuilder.Generate(context, data, projectDir);
-    }
-
 
     private static string? ReadResourceClassContent(string resourceClassName)
     {

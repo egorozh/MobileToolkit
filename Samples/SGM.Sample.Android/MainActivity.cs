@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using Android.Text;
+using AndroidX.RecyclerView.Widget;
 using MSG.Android.LayoutGenerator;
 using SGM.Sample.Core;
 
@@ -12,6 +13,9 @@ namespace SGM.Sample.Android;
 public partial class MainActivity : Activity
 {
     private MainViewModel _viewModel;
+
+
+    private RecyclerView _recyclerView => RecyclerView.As<RecyclerView>();
     
 
     protected override void OnCreate(Bundle? savedInstanceState)

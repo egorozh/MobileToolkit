@@ -11,12 +11,13 @@
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
         <AssemblyName>SGM.Sample.Android</AssemblyName>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <ProjectReference Include="..\SGM.Sample.Core\SGM.Sample.Core.csproj" />
     </ItemGroup>
-    
+
     <ItemGroup>
-      <PackageReference Include="MSG.Android.LayoutGenerator" Version="1.0.4" />
+        <PackageReference Include="MSG.Android.LayoutGenerator" Version="2.0.0" />
+        <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.9" />
     </ItemGroup>
 </Project>

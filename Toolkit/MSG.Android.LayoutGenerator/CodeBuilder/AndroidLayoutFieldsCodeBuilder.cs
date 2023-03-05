@@ -11,7 +11,7 @@ namespace MSG.Android.LayoutGenerator.CodeBuilder;
 
 internal static class AndroidLayoutFieldsCodeBuilder
 {
-    public static void Generate(GeneratorExecutionContext context, SyntaxCollector.LayoutCollectData data, string projectDir)
+    public static void Generate(SourceProductionContext context, SyntaxCollector.LayoutCollectData data, string projectDir)
     {
         string layoutsDir = Path.Combine(projectDir, "Resources", "layout");
 
@@ -33,7 +33,7 @@ internal static class AndroidLayoutFieldsCodeBuilder
     }
 
     
-    private static void GenerateImpl(GeneratorExecutionContext context, SyntaxCollector.LayoutCollectData data, string layoutPath)
+    private static void GenerateImpl(SourceProductionContext context, SyntaxCollector.LayoutCollectData data, string layoutPath)
     {
         IReadOnlyList<ControlData> controls = GetControlsFromLayout(layoutPath);
         
@@ -58,9 +58,6 @@ internal static class AndroidLayoutFieldsCodeBuilder
         sb.AppendLine($"namespace {namespaceName}");
 
         sb.AppendLine("{");
-        
-        sb.AppendLine();
-        sb.AppendLine();
 
         sb.AppendLine($"    partial class {className}");
         sb.AppendLine("    {");
