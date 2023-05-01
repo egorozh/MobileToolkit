@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Diagnostics;
 using MSG.Android.LayoutGenerator.CodeBuilder;
 using MSG.Android.LayoutGenerator.Collectors;
 
@@ -13,24 +14,28 @@ public class AndroidLayoutControlsFieldGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        IncrementalValuesProvider<TypeDeclarationSyntax> providerTypes = context.SyntaxProvider.CreateSyntaxProvider(
-            static (node, _) => SyntaxCollector.IsLayoutGenerateAttributeNote(node),
-            static (syntaxContext, _) => (TypeDeclarationSyntax)syntaxContext.Node);
+        IncrementalValuesProvider<LayoutCollectData> providerTypes = context.SyntaxProvider.CreateSyntaxProvider(
+                static (node, _) => SyntaxCollector.IsLayoutGenerateAttributeNote(node),
+                static (syntaxContext, ctx) => SyntaxCollector.GetCollectData((AttributeSyntax)syntaxContext.Node, ctx))
+            .Where(static m => m is not null)!;
 
-        var provider = providerTypes.Combine(context.AnalyzerConfigOptionsProvider);
+        var configProvider = context.AnalyzerConfigOptionsProvider
+            .Select(static (p, ctx) => p.GlobalOptions)
+            .Select(static (g, ctx) =>
+            {
+                if (!g.TryGetValue("build_property.projectdir", out string? projectDir))
+                    return null;
+    
+                return projectDir;
+            });
+        
+        var provider = providerTypes.Combine(configProvider);
         
         context.RegisterSourceOutput(provider, static (productionContext, inputs) =>
         {
-            var collectData = SyntaxCollector.GetCollectData(inputs.Left);
-            
-            if (collectData is null)
-                return;
+            LayoutCollectData collectData = inputs.Left;
+            string projectDir = inputs.Right;
 
-            var globalOptions = inputs.Right.GlobalOptions;
-            
-            if (!globalOptions.TryGetValue("build_property.projectdir", out string? projectDir))
-                return;
-            
             if (string.IsNullOrEmpty(projectDir))
                 return;
             

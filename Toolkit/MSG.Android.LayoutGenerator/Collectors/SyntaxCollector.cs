@@ -10,58 +10,30 @@ internal static class SyntaxCollector
 {
     public static bool IsLayoutGenerateAttributeNote(SyntaxNode syntaxNode)
     {
-        if (syntaxNode is not TypeDeclarationSyntax typeDeclarationSyntax)
+        if (syntaxNode is not AttributeSyntax attributeSyntax)
             return false;
 
-        
-        foreach (var attributeList in typeDeclarationSyntax.AttributeLists)
-        {
-            foreach (var attribute in attributeList.Attributes)
-            {
-                if (IsKnownAttribute(attribute))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return IsKnownAttribute(attributeSyntax);
     }
-
     
-    private static bool IsKnownAttribute(AttributeSyntax attribute)
+
+    public static LayoutCollectData? GetCollectData(AttributeSyntax attributeSyntax,
+        CancellationToken cancellationToken)
     {
-        if (attribute.Name is not IdentifierNameSyntax identifierNameSyntax)
-            return false;
+        var argument = attributeSyntax.ArgumentList?.Arguments.FirstOrDefault();
 
-        string attributeName = identifierNameSyntax.Identifier.Text;
-
-        return attributeName is "AndroidLayoutGenerate" or "AndroidLayoutGenerateAttribute";
-    }
-
-
-    public static LayoutCollectData? GetCollectData(TypeDeclarationSyntax typeDeclarationSyntax)
-    {
-        List<AttributeSyntax> attributeSyntaxes = new ();
-
-        foreach (var attributeList in typeDeclarationSyntax.AttributeLists)
-        {
-            attributeSyntaxes.AddRange(attributeList.Attributes.Where(static attribute => IsKnownAttribute(attribute)));
-        }
-
-        var attributeSyntax = attributeSyntaxes.FirstOrDefault();
-
-        var argument = attributeSyntax?.ArgumentList?.Arguments.FirstOrDefault();
-        
         if (argument?.Expression is not MemberAccessExpressionSyntax expression)
             return null;
 
         string layoutName = expression.Name.ToString();
-        
+
         if (string.IsNullOrEmpty(layoutName))
             return null;
-        
+
         string? sourceName = null;
+
+        TypeDeclarationSyntax typeDeclarationSyntax = attributeSyntax.GetParent<TypeDeclarationSyntax>();
+
 
         if (attributeSyntax.ArgumentList?.Arguments.Count > 1)
         {
@@ -74,16 +46,24 @@ internal static class SyntaxCollector
             else if (sourceArgument?.Expression is InvocationExpressionSyntax sourceNameOfExpression)
             {
                 if (sourceNameOfExpression.Expression.ToString() == "nameof" &&
-                    sourceNameOfExpression.ArgumentList.Arguments.FirstOrDefault() is {} argumentSyntax)
+                    sourceNameOfExpression.ArgumentList.Arguments.FirstOrDefault() is { } argumentSyntax)
                 {
                     sourceName = argumentSyntax.Expression.ToString();
                 }
             }
         }
-        
+
         return new LayoutCollectData(layoutName, typeDeclarationSyntax, sourceName);
     }
     
     
-    public record LayoutCollectData(string LayoutName, TypeDeclarationSyntax ClassSyntax, string? SourceName);
+    private static bool IsKnownAttribute(AttributeSyntax attribute)
+    {
+        if (attribute.Name is not IdentifierNameSyntax identifierNameSyntax)
+            return false;
+
+        string attributeName = identifierNameSyntax.Identifier.Text;
+
+        return attributeName is "AndroidLayoutGenerate" or "AndroidLayoutGenerateAttribute";
+    }
 }
