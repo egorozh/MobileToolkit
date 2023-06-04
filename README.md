@@ -25,8 +25,6 @@ public partial class MainActivity : Activity
         base.OnCreate(savedInstanceState);
 
         SetContentView(Resource.Layout.activity_main);
-
-        InitializeControls();
     }
 }
 
@@ -37,28 +35,18 @@ using Android.Widget;
 using Android.Views;
 
 
-namespace SGM.Sample.Android;
-
-
-partial class MainActivity
+namespace SGM.Sample.Android
 {
-    protected TextView TextView { get; private set; }
-
-    protected Button Button { get; private set; }
-
-    protected EditText EditText { get; private set; }
-
-
-    protected void InitializeControls()
+    partial class MainActivity
     {
-        TextView = this.FindViewById<TextView>(Resource.Id.TextView);
+        public TextView TextView => this.FindViewById<TextView>(Resource.Id.TextView);
 
-        Button = this.FindViewById<Button>(Resource.Id.Button);
+        public Button Button => this.FindViewById<Button>(Resource.Id.Button);
 
-        EditText = this.FindViewById<EditText>(Resource.Id.EditText);
+        public EditText EditText => this.FindViewById<EditText>(Resource.Id.EditText);
 
+        public View RecyclerView => this.FindViewById<View>(Resource.Id.RecyclerView);
     }
-
 }
 ```
 
