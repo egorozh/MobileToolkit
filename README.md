@@ -1,6 +1,6 @@
 [![Nuget](https://img.shields.io/nuget/v/MSG.AndroidToolkit?label=MSG.AndroidToolkit)](https://www.nuget.org/packages/MSG.AndroidToolkit)
 
-# Dotnet Mobile Toolkit
+# .NET Mobile Toolkit
 
 ## 1. Source generator for getting android controls from xml layout
 
