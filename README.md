@@ -17,7 +17,7 @@ And usage:
 ``` csharp
 
 [Activity]
-[AndroidLayoutGenerate(Resource.Layout.activity_main)]
+[AndroidLayoutGenerate(LayoutResource = nameof(Resource.Layout.activity_main))]
 public partial class MainActivity : Activity
 {
     protected override void OnCreate(Bundle? savedInstanceState)
