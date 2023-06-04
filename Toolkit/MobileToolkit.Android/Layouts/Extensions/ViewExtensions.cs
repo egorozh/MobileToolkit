@@ -1,7 +1,7 @@
 using Android.Views;
 
 
-namespace MSG.AndroidToolkit.Layouts.Extensions;
+namespace MobileToolkit.Android.Layouts.Extensions;
 
 
 public static class ViewExtensions

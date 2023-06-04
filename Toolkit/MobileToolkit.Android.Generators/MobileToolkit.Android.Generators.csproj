@@ -17,6 +17,7 @@
         <PackageTags>mvvm, android, xamarin, net6, net7, xml, layout</PackageTags>
         <Version>2.0.3</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <RootNamespace>MSG.Android.LayoutGenerator</RootNamespace>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

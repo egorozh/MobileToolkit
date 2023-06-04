@@ -10,9 +10,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Sample.Core", "Samples\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Sample.Ios", "Samples\SGM.Sample.Ios\SGM.Sample.Ios.csproj", "{76F0BFA9-C6A0-4BC1-824A-A0213CB3DDFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSG.Android.LayoutGenerator", "Toolkit\MSG.Android.LayoutGenerator\MSG.Android.LayoutGenerator.csproj", "{7AF9B9FA-4E06-4845-9F50-EA569CFEB0AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileToolkit.Android.Generators", "Toolkit\MobileToolkit.Android.Generators\MobileToolkit.Android.Generators.csproj", "{7AF9B9FA-4E06-4845-9F50-EA569CFEB0AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSG.AndroidToolkit", "Toolkit\MSG.AndroidToolkit\MSG.AndroidToolkit.csproj", "{FA001BA9-6272-4117-945D-8F94988AD025}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileToolkit.Android", "Toolkit\MobileToolkit.Android\MobileToolkit.Android.csproj", "{FA001BA9-6272-4117-945D-8F94988AD025}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

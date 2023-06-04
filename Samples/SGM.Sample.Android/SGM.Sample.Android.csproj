@@ -15,10 +15,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Toolkit\MSG.Android.LayoutGenerator\MSG.Android.LayoutGenerator.csproj"
-                          OutputItemType="Analyzer"
-                          ReferenceOutputAssembly="false"/>
-        <ProjectReference Include="..\..\Toolkit\MSG.AndroidToolkit\MSG.AndroidToolkit.csproj" />
+        <ProjectReference Include="..\..\Toolkit\MobileToolkit.Android.Generators\MobileToolkit.Android.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\..\Toolkit\MobileToolkit.Android\MobileToolkit.Android.csproj" />
         <ProjectReference Include="..\SGM.Sample.Core\SGM.Sample.Core.csproj" />
     </ItemGroup>
 

@@ -19,14 +19,14 @@ public class AndroidLayoutControlsFieldGenerator : IIncrementalGenerator
          IncrementalValuesProvider<Result<(HierarchyInfo Hierarchy, AndroidLayoutInfo? Info)>> generationInfoWithErrors =
             context.SyntaxProvider
             .ForAttributeWithMetadataName(
-                "MSG.AndroidToolkit.Layouts.Attributes.AndroidLayoutGenerateAttribute",
+                "MobileToolkit.Android.Layouts.Attributes.AndroidLayoutAttribute",
                 static (node, _) => node is ClassDeclarationSyntax classDeclaration && classDeclaration.HasOrPotentiallyHasAttributes(),
                 (context, token) =>
                 {
                     INamedTypeSymbol typeSymbol = (INamedTypeSymbol)context.TargetSymbol;
 
                     // Gather all generation info, and any diagnostics
-                    AndroidLayoutInfo? info = ValidateTargetTypeAndGetInfo(typeSymbol, context.Attributes[0], context.SemanticModel.Compilation);
+                    AndroidLayoutInfo? info = ValidateTargetTypeAndGetInfo(context.Attributes[0]);
 
                     token.ThrowIfCancellationRequested();
 
@@ -66,14 +66,12 @@ public class AndroidLayoutControlsFieldGenerator : IIncrementalGenerator
     }
 
     
-    private AndroidLayoutInfo? ValidateTargetTypeAndGetInfo(INamedTypeSymbol typeSymbol, AttributeData attributeData, Compilation compilation)
+    private static AndroidLayoutInfo ValidateTargetTypeAndGetInfo(AttributeData attributeData)
     {
-        AndroidLayoutInfo? info = null;
-        
         string? layoutResource = attributeData.GetNamedArgument("LayoutResource", "");
         string? source = attributeData.GetNamedArgument("Source", "");
 
-        info = new AndroidLayoutInfo(LayoutResource: layoutResource, Source: source);
+        AndroidLayoutInfo info = new AndroidLayoutInfo(LayoutResource: layoutResource, Source: source);
 
         return info;
     }

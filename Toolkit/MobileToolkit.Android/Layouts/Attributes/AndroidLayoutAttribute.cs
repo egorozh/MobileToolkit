@@ -1,8 +1,8 @@
-namespace MSG.AndroidToolkit.Layouts.Attributes;
+namespace MobileToolkit.Android.Layouts.Attributes;
 
 
 [AttributeUsage(validOn: AttributeTargets.Class | AttributeTargets.Struct)]
-public sealed class AndroidLayoutGenerateAttribute : Attribute
+public sealed class AndroidLayoutAttribute : Attribute
 {
     public string? LayoutResource { get; init; }
     
