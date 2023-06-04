@@ -2,7 +2,7 @@
 
 # Dotnet Mobile Toolkit
 
-### Source generator for getting android controls from xml layout
+## 1. Source generator for getting android controls from xml layout
 
 Get started:
 
