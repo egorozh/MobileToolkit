@@ -27,8 +27,6 @@ public partial class MainActivity : Activity
         SetContentView(Resource.Layout.activity_main);
 
         _viewModel = new MainViewModel();
-
-        InitializeControls();
         
         Button.Click += ButtonOnClick;
         

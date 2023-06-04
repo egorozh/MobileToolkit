@@ -60,29 +60,19 @@ internal static class AndroidLayoutFieldsCodeBuilder
         sb.AppendLine($"    partial {classType} {className}");
         sb.AppendLine("    {");
 
-        foreach (var controlData in controls)
-        {
-            sb.AppendLine($"        public {controlData.ClassName} {controlData.Id} {{ get; private set; }}");
-            sb.AppendLine();
-        }
-
-        sb.AppendLine();
-
-        sb.AppendLine("        private void InitializeControls()");
-        sb.AppendLine("        {");
-
         string? sourceName = info.Source;
         sourceName = string.IsNullOrEmpty(sourceName) ? "this" : sourceName;
 
-        foreach (var controlData in controls)
+        for (int i = 0; i < controls.Count; i++)
         {
-            sb.AppendLine($"            {controlData.Id} = {sourceName}.FindViewById<{controlData.ClassName}>(Resource.Id.{controlData.Id});");
-            sb.AppendLine();
+            (string? propName, string? typeName) = controls[i];
+    
+            sb.AppendLine($"        public {typeName} {propName} => {sourceName}.FindViewById<{typeName}>(Resource.Id.{propName});");
+            
+            if (i < controls.Count - 1)
+                sb.AppendLine();
         }
-        
-        sb.AppendLine("        }");
-        sb.AppendLine();
-        
+
         sb.AppendLine("    }");
         
         sb.Append('}');
