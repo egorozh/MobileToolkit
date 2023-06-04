@@ -1,4 +1,4 @@
-[![Nuget](https://img.shields.io/nuget/v/MSG.AndroidToolkit?label=MSG.AndroidToolkit)](https://www.nuget.org/packages/MSG.AndroidToolkit)
+[![Nuget](https://img.shields.io/nuget/v/MobileToolkit.Android?label=MobileToolkit.Android)](https://www.nuget.org/packages/MobileToolkit.Android)
 
 # .NET Mobile Toolkit
 
@@ -9,15 +9,15 @@ Get started:
 Install the library as a NuGet package:
 
 ```powershell
-Install-Package MSG.AndroidToolkit
-# Or 'dotnet add package MSG.AndroidToolkit'
+Install-Package MobileToolkit.Android
+# Or 'dotnet add package MobileToolkit.Android'
 
 ```
 And usage:
 ``` csharp
 
 [Activity]
-[AndroidLayoutGenerate(LayoutResource = nameof(Resource.Layout.activity_main))]
+[AndroidLayout(LayoutResource = nameof(Resource.Layout.activity_main))]
 public partial class MainActivity : Activity
 {
     protected override void OnCreate(Bundle? savedInstanceState)
