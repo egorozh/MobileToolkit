@@ -1,4 +1,4 @@
-[![Nuget](https://img.shields.io/nuget/v/MSG.Android.LayoutGenerator?label=MSG.Android.LayoutGenerator)](https://www.nuget.org/packages/MSG.Android.LayoutGenerator)
+[![Nuget](https://img.shields.io/nuget/v/MSG.AndroidToolkit?label=MSG.AndroidToolkit)](https://www.nuget.org/packages/MSG.AndroidToolkit)
 
 # Mvvm Source Generators Toolkit
 
@@ -9,8 +9,8 @@ Get started:
 Install the library as a NuGet package:
 
 ```powershell
-Install-Package MSG.Android.LayoutGenerator
-# Or 'dotnet add package MSG.Android.LayoutGenerator'
+Install-Package MSG.AndroidToolkit
+# Or 'dotnet add package MSG.AndroidToolkit'
 
 ```
 And usage:
