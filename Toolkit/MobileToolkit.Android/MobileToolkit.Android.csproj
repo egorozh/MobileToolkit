@@ -12,7 +12,7 @@
         <PackageProjectUrl>https://github.com/egorozh/MobileToolkit</PackageProjectUrl>
         <RepositoryUrl>https://github.com/egorozh/MobileToolkit</RepositoryUrl>
         <PackageTags>mvvm, android, xamarin, net6, net7, xml, layout</PackageTags>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
