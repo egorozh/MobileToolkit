@@ -10,17 +10,20 @@
         <ApplicationVersion>1</ApplicationVersion>
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
         <AssemblyName>SGM.Sample.Android</AssemblyName>
+
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\Toolkit\MSG.Android.LayoutGenerator\MSG.Android.LayoutGenerator.csproj"
                           OutputItemType="Analyzer"
                           ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\..\Toolkit\MSG.AndroidToolkit\MSG.AndroidToolkit.csproj" />
         <ProjectReference Include="..\SGM.Sample.Core\SGM.Sample.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-<!--        <PackageReference Include="MSG.Android.LayoutGenerator" Version="2.0.0" />-->
+<!--        <PackageReference Include="MSG.AndroidToolkit" Version="1.0.0" />-->
         <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.9" />
     </ItemGroup>
 </Project>

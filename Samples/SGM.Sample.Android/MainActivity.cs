@@ -1,7 +1,8 @@
 using System.ComponentModel;
 using Android.Text;
 using AndroidX.RecyclerView.Widget;
-using MSG.Android.LayoutGenerator;
+using MSG.AndroidToolkit.Layouts.Attributes;
+using MSG.AndroidToolkit.Layouts.Extensions;
 using SGM.Sample.Core;
 
 
@@ -9,7 +10,7 @@ namespace SGM.Sample.Android;
 
 
 [Activity(Label = "@string/app_name", MainLauncher = true)]
-[AndroidLayoutGenerate(Resource.Layout.activity_main)]
+[AndroidLayoutGenerate(LayoutResource = nameof(Resource.Layout.activity_main))]
 public partial class MainActivity : Activity
 {
     private MainViewModel _viewModel;

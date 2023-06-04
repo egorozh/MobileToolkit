@@ -15,7 +15,8 @@
         <PackageProjectUrl>https://github.com/egorozh/MSG.Toolkit</PackageProjectUrl>
         <RepositoryUrl>https://github.com/egorozh/MSG.Toolkit</RepositoryUrl>
         <PackageTags>mvvm, android, xamarin, net6, net7, xml, layout</PackageTags>
-        <Version>2.0.2</Version>
+        <Version>2.0.3</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -31,11 +32,6 @@
     <ItemGroup>
         <Compile Remove="Resources\Attributes.cs" />
         <Compile Remove="Resources\ViewExtensions.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Include="Resources\Attributes.cs" />
-        <EmbeddedResource Include="Resources\ViewExtensions.cs" />
     </ItemGroup>
 
 

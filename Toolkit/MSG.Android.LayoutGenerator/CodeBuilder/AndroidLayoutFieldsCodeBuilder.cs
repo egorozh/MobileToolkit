@@ -1,9 +1,7 @@
 ﻿using System.Text;
 using System.Xml;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using MSG.Android.LayoutGenerator.Collectors;
-using MSG.Android.LayoutGenerator.Extensions;
+using MSG.Android.LayoutGenerator.Models;
 
 
 namespace MSG.Android.LayoutGenerator.CodeBuilder;
@@ -11,47 +9,41 @@ namespace MSG.Android.LayoutGenerator.CodeBuilder;
 
 internal static class AndroidLayoutFieldsCodeBuilder
 {
-    public static void Generate(SourceProductionContext context, LayoutCollectData data, string projectDir)
+    public static void Generate(SourceProductionContext context, HierarchyInfo hierarchy, AndroidLayoutInfo? info, string projectDir)
     {
         string layoutsDir = Path.Combine(projectDir, "Resources", "layout");
 
-        string layoutPath = Path.Combine(layoutsDir, data.LayoutName + ".xml");
+        string layoutPath = Path.Combine(layoutsDir, info.LayoutResource + ".xml");
 
         FileInfo layoutInfo = new(layoutPath);
 
         if (layoutInfo.Exists)
         {
-            GenerateImpl(context, data, layoutPath);
+            GenerateImpl(context, hierarchy, info, layoutPath);
             return;
         }
         
-        layoutPath = Path.Combine(layoutsDir, data.LayoutName + ".axml");
+        layoutPath = Path.Combine(layoutsDir, info.LayoutResource + ".axml");
         layoutInfo = new FileInfo(layoutPath);
         
         if (layoutInfo.Exists) 
-            GenerateImpl(context, data, layoutPath);
+            GenerateImpl(context, hierarchy, info, layoutPath);
     }
 
     
-    private static void GenerateImpl(SourceProductionContext context, LayoutCollectData data, string layoutPath)
+    private static void GenerateImpl(SourceProductionContext context,  HierarchyInfo hierarchy, AndroidLayoutInfo? info, string layoutPath)
     {
         IReadOnlyList<ControlData> controls = GetControlsFromLayout(layoutPath);
         
         if (controls.Count == 0)
             return;
 
-        string classType = data.ClassSyntax switch
-        {
-            RecordDeclarationSyntax => "record",
-            StructDeclarationSyntax => "struct",
-            _ => "class"
-        };
+        string classType = "class";
         
-        string className = data.ClassSyntax.Identifier.Text;
         
-        var namespaceSyntax = data.ClassSyntax.GetParent<FileScopedNamespaceDeclarationSyntax>();
-
-        string namespaceName = namespaceSyntax.Name.ToString();
+        string className = hierarchy.MetadataName;
+        
+        string namespaceName = hierarchy.Namespace;
 
        
         StringBuilder sb = new();
@@ -80,7 +72,7 @@ internal static class AndroidLayoutFieldsCodeBuilder
         sb.AppendLine("        private void InitializeControls()");
         sb.AppendLine("        {");
 
-        string? sourceName = data.SourceName;
+        string? sourceName = info.Source;
         sourceName = string.IsNullOrEmpty(sourceName) ? "this" : sourceName;
 
         foreach (var controlData in controls)
