@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 
 #pragma warning disable CS0809
 
-namespace System;
+namespace MobileToolkit.Android.Generators.Helpers;
 
 /// <summary>
 /// A polyfill type that mirrors some methods from <see cref="HashCode"/> on .NET 6.
@@ -27,7 +27,7 @@ internal struct HashCode
     /// Initializes the default seed.
     /// </summary>
     /// <returns>A random seed.</returns>
-    private static unsafe uint GenerateGlobalSeed()
+    private static uint GenerateGlobalSeed()
     {
         byte[] bytes = new byte[4];
 

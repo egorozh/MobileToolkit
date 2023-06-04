@@ -1,11 +1,11 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using MSG.Android.LayoutGenerator.CodeBuilder;
-using MSG.Android.LayoutGenerator.Extensions;
-using MSG.Android.LayoutGenerator.Models;
+using MobileToolkit.Android.Generators.CodeBuilder;
+using MobileToolkit.Android.Generators.Extensions;
+using MobileToolkit.Android.Generators.Models;
 
 
-namespace MSG.Android.LayoutGenerator;
+namespace MobileToolkit.Android.Generators;
 
 
 public sealed record AndroidLayoutInfo(string LayoutResource, string? Source);

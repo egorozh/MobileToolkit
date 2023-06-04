@@ -1,10 +1,9 @@
 ﻿using System.Text;
 using System.Xml;
 using Microsoft.CodeAnalysis;
-using MSG.Android.LayoutGenerator.Models;
+using MobileToolkit.Android.Generators.Models;
 
-
-namespace MSG.Android.LayoutGenerator.CodeBuilder;
+namespace MobileToolkit.Android.Generators.CodeBuilder;
 
 
 internal static class AndroidLayoutFieldsCodeBuilder

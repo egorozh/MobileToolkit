@@ -1,8 +1,7 @@
 using Microsoft.CodeAnalysis;
-using MSG.Android.LayoutGenerator.Helpers;
+using MobileToolkit.Android.Generators.Helpers;
 
-
-namespace MSG.Android.LayoutGenerator.Extensions;
+namespace MobileToolkit.Android.Generators.Extensions;
 
 
 internal static class ITypeSymbolExtensions

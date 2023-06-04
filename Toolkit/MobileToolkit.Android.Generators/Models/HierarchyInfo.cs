@@ -1,10 +1,9 @@
 using Microsoft.CodeAnalysis;
-using MSG.Android.LayoutGenerator.Extensions;
-
+using MobileToolkit.Android.Generators.Extensions;
 using static Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 
 
-namespace MSG.Android.LayoutGenerator.Models;
+namespace MobileToolkit.Android.Generators.Models;
 
 
 internal sealed record HierarchyInfo(string FilenameHint, string MetadataName, string Namespace)

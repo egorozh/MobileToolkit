@@ -2,8 +2,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-
-namespace MSG.Android.LayoutGenerator.Extensions;
+namespace MobileToolkit.Android.Generators.Extensions;
 
 
 internal static class TypeDeclarationSyntaxExtensions

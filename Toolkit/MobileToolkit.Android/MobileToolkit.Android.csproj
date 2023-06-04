@@ -21,7 +21,7 @@
 
 
     <ItemGroup Label="Package">
-        <None Include="..\MSG.Android.LayoutGenerator\bin\$(Configuration)\netstandard2.0\MSG.Android.LayoutGenerator.dll" PackagePath="analyzers\dotnet\roslyn4.0\cs" Pack="true" Visible="false" />
+        <None Include="..\MobileToolkit.Android.Generators\bin\$(Configuration)\netstandard2.0\MobileToolkit.Android.Generators.dll" PackagePath="analyzers\dotnet\roslyn4.0\cs" Pack="true" Visible="false" />
     </ItemGroup>
     
 </Project>

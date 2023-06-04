@@ -1,4 +1,4 @@
-namespace MSG.Android.LayoutGenerator.Extensions;
+namespace MobileToolkit.Android.Generators.Extensions;
 
 
 internal static class DebugHelper

@@ -2,8 +2,7 @@ using System.Buffers;
 using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 
-
-namespace MSG.Android.LayoutGenerator.Helpers;
+namespace MobileToolkit.Android.Generators.Helpers;
 
 
 /// <summary>
